@@ -1,0 +1,36 @@
+{
+
+    "users": [
+        {
+            "id":1,
+            "email":"jtwy24@gmail.com",
+            "username":"CodeeBryant"
+        }
+    ],
+  "messages": [
+      {
+          "id":1,
+          "messages":"Hello World",
+          "userId":1
+      }
+  ],
+  "events": [
+      {
+          "id":1,
+          "userId":1,
+          "eventName":"Christmas",
+          "eventLocation": "Nana's house",
+          "eventDate": "12/25/2021"
+      }
+  ],
+  "tasks": [
+      {
+          "id":1,
+          "userId":1,
+          "taskName": "laundry",
+          "taskDetail": "Need to wash the kids soccer uniforms",
+          "taskDate": "12/18/2021",
+          "taskComplete":false
+      }
+  ]
+}
