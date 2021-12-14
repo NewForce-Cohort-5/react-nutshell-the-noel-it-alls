@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TaskContext } from "./TaskProvider";
 import { TaskCard } from "./TaskCard";
 // import "./Task.css";
 import { UserContext } from "../users/UserProvider";
 
-
 export const TaskList = () => {
   // This state changes when `getAnimals()` is invoked below
   const { tasks, getTasks } = useContext(TaskContext);
+ 
+
 //   const { users, getUsers } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -19,11 +20,6 @@ export const TaskList = () => {
     getTasks();
   }, []);
 
-    const [isChecked, setIsChecked] = useContext(false);
-  
-    const handleOnChange = () => {
-      setIsChecked(!isChecked);
-    };
 
 
   return (
@@ -45,25 +41,8 @@ export const TaskList = () => {
                       task={task} />
           })
         }
-        <div className="App">
-      Completed Task:
-      <div className="taskCompleted">
-        <input
-          type={checkbox}
-          id={taskCompleted}
-          name={completed}
-          value={task.taskCompleted}
-          checked={isChecked}
-          onChange={handleOnChange}
-        />
-        Paneer
       </div>
-      <div className="result">
-        Above checkbox is {isChecked ? "checked" : "un-checked"}.
-      </div>
-    </div>
-      </div>
+
     </>
   );
-}
-
+    }

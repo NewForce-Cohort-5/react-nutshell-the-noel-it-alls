@@ -15,13 +15,15 @@ export const TaskForm = () => {
   */
 
   const [task, setTask] = useState({
-
+    userId: +localStorage.getItem,
     taskName: "",
     taskDetail: "",
     taskDate:"",
+    taskComplete:false
+
    
 });
-
+console.log(task)
   const navigate = useNavigate();
 
   /*
@@ -65,12 +67,12 @@ export const TaskForm = () => {
   const handleClickSaveTask = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
-    // const locationId = parseInt(employee.locationId);
+    const userId = parseInt(task.userId);
     // const hourlyRate = parseInt(employee.hourlyRate);
     // const manager = Boolean(employee.manager)
     // const fullTime = Boolean(employee.fullTime)
 
-    // employee.locationId = locationId
+    task.userId = userId
     // employee.hourlyRate = hourlyRate
     // employee.manager = manager
     // employee.fullTime = fullTime
@@ -113,7 +115,7 @@ export const TaskForm = () => {
     </fieldset>
     <button className="btn btn-primary"
         onClick={handleClickSaveTask}>
-        Save Employee
+        Save Task
       </button>
   </form>
 )
