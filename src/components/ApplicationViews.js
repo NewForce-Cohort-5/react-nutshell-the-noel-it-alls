@@ -13,7 +13,6 @@ export const ApplicationViews = () => {
         <Route path="/messages" element={<p>this is where messages go</p>}/>
         <Route path="/tasks" element={<p>this is where tasks go</p>}/>
         <Route path="/events" element={<p>this is where tasks go</p>}/>
-        <Route path="/logout" element={<p>this is where logout</p>}/>
-      </Routes>
+       </Routes>
     )  
 }

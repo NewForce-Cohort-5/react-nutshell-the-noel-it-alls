@@ -4,16 +4,26 @@ import { useNavigate } from "react-router-dom"
 import "./Logout.css"
 
 export const Logout = () =>{
+    const navigate = useNavigate()
+    const email = useRef()
+    const existDialog = useRef()
+
+    const existingUserCheck = () => {
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
+            .then(res => res.json())
+            .then(user => user.length ? user[0] : false)
+    }
 
     const handleLogout = (e) => {
-        e.preventDefault()
-        existingUserCheck()
-            .then(exists => {
-                if (exists) {
-                    localStorage.removeItem("activeUser")
-                    props.setLoggedin(true)
-                    navigate("/")
+          
+          localStorage.removeItem("activeUser")
+
+            window.location.reload(false);
+            navigate("/login")
+         
     }
+      
+   
 
     return (
         <>
