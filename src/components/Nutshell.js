@@ -5,7 +5,7 @@ import "./Nutshell.css";
 import { Routes, Route, Navigate } from "react-router";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
-
+import { Logout} from './auth/Logout'
 export const Nutshell = () => {
   const [loggedin, setLoggedin] = useState(false);
 
@@ -16,6 +16,7 @@ export const Nutshell = () => {
       <>
         <NavBar />
         <ApplicationViews />
+        <Logout />
       </>
     );
   } else {

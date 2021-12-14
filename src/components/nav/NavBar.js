@@ -23,6 +23,9 @@ class NavBar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/events">Events</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/events">Events</Link>
+                    </li>
                 </ul>
                 <span className="navbar-text">
                     <ul className="nav nav-pills nav-fill">
