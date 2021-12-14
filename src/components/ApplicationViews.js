@@ -1,55 +1,19 @@
-import { Route } from "react-router-dom";
-import React, { Component } from "react";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
 
-export default class ApplicationViews extends Component {
 
-  render() {
+export const ApplicationViews = () => {
+
     return (
-      <React.Fragment>
+      <Routes>
 
-        <Route
-          exact path="/" render={props => {
-            return null
-            // Remove null and return the component which will show news articles
-          }}
-        />
+        <Route path="/" element={<p>this is where home goes</p>}/>
+        <Route path="/register" element={<p>this is where register go</p>}/>
+        <Route path="/friends" element={<p>this is where friends go</p>}/>
+        <Route path="/messages" element={<p>this is where messages go</p>}/>
+        <Route path="/tasks" element={<p>this is where tasks go</p>}/>
+        <Route path="/events" element={<p>this is where tasks go</p>}/>
 
-        <Route
-          exact path="/register" render={props => {
-            return null
-            // Remove null and return the component which will handle user registration
-          }}
-        />
-
-        <Route
-          path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
-          }}
-        />
-
-        <Route
-          path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
-          }}
-        />
-
-        <Route
-          path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
-          }}
-        />
-
-        <Route
-          path="/events" render={props => {
-            return null
-            // Remove null and return the component which will show the user's events
-          }}
-        />
-
-      </React.Fragment>
-    );
-  }
+      </Routes>
+    )  
 }
