@@ -49,10 +49,10 @@ export const TaskList = () => {
       Completed Task:
       <div className="taskCompleted">
         <input
-          type="checkbox"
-          id="taskCompleted"
-          name="completed"
-          value="{task.taskCompleted}"
+          type={checkbox}
+          id={taskCompleted}
+          name={completed}
+          value={task.taskCompleted}
           checked={isChecked}
           onChange={handleOnChange}
         />
