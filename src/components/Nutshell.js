@@ -16,6 +16,7 @@ export const Nutshell = () => {
       <>
         <NavBar />
         <ApplicationViews />
+        
       </>
     );
   } else {
