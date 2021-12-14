@@ -1,55 +1,15 @@
-import { Route } from "react-router-dom";
-import React, { Component } from "react";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { TaskList } from "./tasks/TaskList";
+import { TaskForm } from "./tasks/TaskForm";
+import { TaskProvider } from "./tasks/TaskProvider";
 
-export default class ApplicationViews extends Component {
 
-  render() {
+export const ApplicationViews = () => {
     return (
-      <React.Fragment>
-
-        <Route
-          exact path="/" render={props => {
-            return null
-            // Remove null and return the component which will show news articles
-          }}
-        />
-
-        <Route
-          exact path="/register" render={props => {
-            return null
-            // Remove null and return the component which will handle user registration
-          }}
-        />
-
-        <Route
-          path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
-          }}
-        />
-
-        <Route
-          path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
-          }}
-        />
-
-        <Route
-          path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
-          }}
-        />
-
-        <Route
-          path="/events" render={props => {
-            return null
-            // Remove null and return the component which will show the user's events
-          }}
-        />
-
-      </React.Fragment>
-    );
-  }
-}
+                      <TaskProvider>
+                        <Routes>
+                        <Route path="/tasks" element={<TaskList />}/>
+                        <Route path="/tasks/create" element={<TaskForm />} />                        </Routes>
+                        </TaskProvider>
+    )}
