@@ -22,6 +22,7 @@ export const ApplicationViews = () => {
         <Route path="/messages" element={<p>this is where messages go</p>}/>
         <Route path="/tasks" element={<TaskList />}/>
         <Route path="/tasks/create" element={<TaskForm />} /> 
+        <Route path="tasks/edit/:taskId/*" element={<TaskForm />} />                       
         <Route path="/events" element={< EventList />}/>
         <Route path="/events/create/*" element={< EventForm />}/>
         <Route path="/events/edit/:eventId/*" element={< EventForm />}/>

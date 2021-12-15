@@ -30,10 +30,12 @@ export const EventList = () => {
         </button>
       {console.log("EventList: Render", events)}
       <div className="eventList">
+
       {eventsByUser.length !== 0 ? eventsByUserSortedByDate.map(event => {
           return <EventCard key={event.id} event={event} />
         }):<p>No events listed yet</p>
       }
+
       </div>
     </div>
     </>
