@@ -1,122 +1,115 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { UserContext } from "../users/UserProvider";
-// import "./Task.css";
+import "./Tasks.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import { TaskContext } from "./TaskProvider";
 
 
 export const TaskForm = () => {
-  const { addTask, getTaskById, updateTask } = useContext(TaskContext);
-//   const { users, getUsers } = useContext(UserContext);
-  const { taskId } = useParams()
-  /*
-  With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-  Define the intial state of the form inputs with useState()
-  */
+  const { addTask, getTaskById, updateTask } = useContext(TaskContext)
 
-  const [task, setTask] = useState({
-    userId: +localStorage.getItem,
-    taskName: "",
-    taskDetail: "",
-    taskDate:"",
-    taskComplete:false
+  //for edit, hold on to state of task in this view
+  const [task, setTask] = useState({})
+  //wait for data before button is active
+  const [isLoading, setIsLoading] = useState(true);
 
-   
-});
-console.log(task)
+  const {taskId} = useParams();
   const navigate = useNavigate();
 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
-  useEffect(() => {
-    // getUsers().then(() => {
-      if (taskId) {
-        getTaskById(taskId).then(setTask)
-      }
-    ;
-  }, []);
-
-  //when a field changes, update state. The return will re-render and display based on the values in state
+  //when field changes, update state. This causes a re-render and updates the view.
   //Controlled component
   const handleControlledInputChange = (event) => {
-    /* When changing a state object or array,
-    always create a copy, make changes, and then set state.*/
-    const newTask = { ...task };
-    /* Animal is an object with properties.
-    Set the property to the new value
-    using object bracket notation. */
-    newTask[event.target.id] = event.target.value;
-    // update state
-    setTask(newTask);
+    //When changing a state object or array,
+    //always create a copy make changes, and then set state.
+    const newTask = { ...task }
+    //task is an object with properties.
+    //set the property to the new value
+    newTask[event.target.id] = event.target.value
+    //update state
+    setTask(newTask)
   }
 
-//   const handleControlledInputChangeBool = (event) => {
-//     /* When changing a state object or array,
-//     always create a copy, make changes, and then set state.*/
-//     const newEmployee = { ...employee };
-//     /* Animal is an object with properties.
-//     Set the property to the new value
-//     using object bracket notation. */
-//     newEmployee[event.target.id] = event.target.checked;
-//     // update state
-//     setEmployee(newEmployee);
-//   }
-
-  const handleClickSaveTask = (event) => {
-    event.preventDefault(); //Prevents the browser from submitting the form
-
-    const userId = parseInt(task.userId);
-    // const hourlyRate = parseInt(employee.hourlyRate);
-    // const manager = Boolean(employee.manager)
-    // const fullTime = Boolean(employee.fullTime)
-
-    task.userId = userId
-    // employee.hourlyRate = hourlyRate
-    // employee.manager = manager
-    // employee.fullTime = fullTime
-    
-
-  if (taskId) {
-      updateTask(task)
-      .then(() => navigate(`/tasks/detail/${taskId}`))
+  const handleSaveTask = () => {
+    if (parseInt(task.id) === 0) {
+        window.alert("placeholder")
     } else {
-      //invoke addAnimal passing animal as an argument.
-      //once complete, change the url and display the animal list
-      addTask(task)
-      .then(() => navigate("/tasks"));
+      //disable the button - no extra clicks
+      setIsLoading(true);
+      if (taskId){
+        //PUT - update
+        updateTask({
+            id: task.id,
+            userId: +localStorage.activeUser,
+            taskName: task.taskName,
+            taskDetail: task.taskDetail,
+            taskDate: task.taskDate,
+            taskComplete: false
+        })
+        .then(() => navigate(`/tasks/${task.id}`))
+      }else {
+        //POST - add
+        addTask({
+            taskName: task.taskName,
+            userId: +localStorage.activeUser,
+            taskDetail: task.taskDetail,
+            taskDate: task.taskDate,
+            taskComplete: false
+        })
+        .then(() => navigate("/tasks"))
+      }
     }
   }
 
+  // Get tasks. If taskId is in the URL, getTaskById
+  useEffect(() => {
+      if (taskId){
+        getTaskById(taskId)
+        .then(task => {
+            setTask(task)
+            setIsLoading(false)
+        })
+      } else {
+        setIsLoading(false)
+      }
+  }, [])
+
   return (
     <form className="taskForm">
-    <h2 className="taskForm__title">New Task</h2>
-    <fieldset>
-      <div className="form-group">
-        <label htmlFor="taskName">Task name: </label>
-        <input type="text" id="taskName" name="name" required autoFocus className="form-control"
-        placeholder="Task.."
-        onChange={handleControlledInputChange}
-        value={task.taskName}/>
-      </div>
-    </fieldset>
-    <fieldset>
-    <div className="form-group">
-      <label htmlFor="taskDetail">Details:</label>
-      <input type="text" id="taskDetail" name="detail" required className="form-control" placeholder="Add Detail.." onChange={handleControlledInputChange} value={task.taskDetail}/>
-    </div>
-    </fieldset>
-    <fieldset>
-    <div className="form-group">
-      <label htmlFor="taskDate">Task Date:</label>
-      <input type="date" id="taskDate" name="date" required className="form-control"  onChange={handleControlledInputChange} value={task.taskDate}/>
-    </div>
-    </fieldset>
-    <button className="btn btn-primary"
-        onClick={handleClickSaveTask}>
-        Save Task
+      <h2 className="taskForm__title">New Task</h2>
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="taskName">Task name: </label>
+          <input type="text" id="taskName" name="name" required autoFocus className="form-control"
+          placeholder="Task.."
+          onChange={handleControlledInputChange}
+          defaultValue={task.taskName}/>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="taskName">Task detail: </label>
+          <input type="text" id="taskDetail" name="detail" required  className="form-control"
+          placeholder="details.."
+          onChange={handleControlledInputChange}
+          defaultValue={task.taskDetail}/>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="taskDate">Completion Date: </label>
+          <input type="date" id="taskDate" name="date" required className="form-control"
+          onChange={handleControlledInputChange}
+          defaultValue={task.taskDate}/>
+        </div>
+      </fieldset>
+      <button className="btn btn-primary"
+        disabled={isLoading}
+        onClick={event => {
+          event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+          handleSaveTask()
+        }}>
+        {taskId ? <>Save Task</> : <>Add Task</>}
       </button>
-  </form>
-)
+    </form>
+  )
 }

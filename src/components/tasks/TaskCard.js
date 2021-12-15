@@ -1,40 +1,26 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { TaskContext } from "./TaskProvider";
+import "./Tasks.css"
 
 
 
 
 export const TaskCard = ({task}) => {
 
-    const [checked, setChecked] = useState(false);
-    const { tasks, completeTask } = useContext(TaskContext);
-    const navigate = useNavigate();
+    const { getTasks, completeTask } = useContext(TaskContext)
+
+
 
 
 
     const handleCheckbox = (event) => {
         event.preventDefault();
+        completeTask(task.id).then(getTasks)
 
-        const taskComplete = Boolean(task.taskComplete)
-        task.taskComplete = taskComplete
+        // const taskComplete = Boolean(task.taskComplete)
+        // task.taskComplete = taskComplete
 
-        const newTask = {... task};
-
-        newTask[event.target.id] = event.target.checked;
-        
-        completeTask(task.id)
-          .then(() => {
-            navigate("/tasks")
-          })
-      }
-      function toggle(value){
-        const newTask = {... task};
-        newTask(value.target.id)
-
-          console.log("you checked the box")
-        return !value;
-      } 
+      }    
 
    return (
 
@@ -43,21 +29,9 @@ export const TaskCard = ({task}) => {
     <div className="taskDetail">{task.taskDetail}</div>
     <div className="taskDate">{task.taskDate}</div>
     <div><label htmlFor="completed">Completed?</label></div>
-    <input className="taskComplete" type ="checkbox" checked={checked} onChange={ () => setChecked(toggle)}/>
+    <input className="taskComplete" type ="checkbox"  onChange={handleCheckbox}/>
     </section>
    )
 
-}
+   }
 
-
-// const handleControlledInputChange = (event) => {
-//     /* When changing a state object or array,
-//     always create a copy, make changes, and then set state.*/
-//     const newTask = { ...task };
-//     /* Animal is an object with properties.
-//     Set the property to the new value
-//     using object bracket notation. */
-//     newTask[event.target.id] = event.target.value;
-//     // update state
-//     setTask(newTask);
-//   }
