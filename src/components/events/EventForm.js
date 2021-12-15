@@ -5,26 +5,15 @@ import "./Event.css"
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const EventForm = () => {
-    const { addEvent } = useContext(EventContext)
+    const { addEvent,getEventById,updateEvent } = useContext(EventContext)
     
-    const [event, setEvent] = useState({
-        userId: +localStorage.activeUser,
-        eventName: "",
-        eventLocation: "",
-        eventDate: ""
-      });
+    const [event, setEvent] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
   
-      const navigate = useNavigate();
-  
-      /*
-      Reach out to the world and get customers state
-      and locations state on initialization.
-      */
-      useEffect(() => {
-        
-      }, [])
-
-      const handleControlledInputChange = (props) => {
+    const {eventId} = useParams();
+    
+    const handleControlledInputChange = (props) => {
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
         const newEvent = { ...event }
@@ -36,39 +25,67 @@ export const EventForm = () => {
         setEvent(newEvent)
       }
   
-      const handleClickSaveEvent = (props) => {
-        props.preventDefault() //Prevents the browser from submitting the form
-        
-            addEvent(event)
-            
-          .then(() => navigate("/events"))
-        }
-      
-  
-      return (
+      const handleClickSaveEvent = () =>{
+          if (event.eventName===null ||event.eventLocation===null ||event.eventDate==null ){window.alert("Please select an event name, location, or/and date")
+            }else{
+                    setIsLoading(true);
+                    if(eventId){
+                         updateEvent({
+                            userId:+localStorage.activeUser,
+                            id:parseInt(event.id),
+                            eventName:event.eventName,
+                            eventLocation:event.eventLocation,
+                            eventDate:event.eventDate
+                            })
+                         .then(()=> navigate("/events/"))
+                    }else{
+                        addEvent({
+                            userId:+localStorage.activeUser,
+                            eventName:event.eventName,
+                            eventLocation:event.eventLocation,
+                            eventDate:event.eventDate
+                        })
+                        .then(()=> navigate("/events/"))
+                    }
+      }
+    }
+        useEffect (() => {
+            if(eventId){
+                getEventById(eventId)
+                .then(eventObj => { setEvent(eventObj)
+                    setIsLoading(false)
+                })
+            } else {
+                setIsLoading(false)
+            }
+        }, [])
+ return (
         <form className="eventForm">
-            <h2 className="eventForm__title">New Event</h2>
+             {eventId ? <h2 className="eventForm__title">Edit Event</h2>: <h2 className="eventForm__title">New Event</h2>} 
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event name:</label>
-                    <input type="text" id="eventName" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Event name" value={event.eventName}/>
+                    <input type="text" id="eventName" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Event name" defaultValue={event.eventName}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label for="location">Event location: </label>
-                    <input type="text" id="eventLocation" onChange={handleControlledInputChange}   className="form-control" placeholder="Event location" value={event.eventLocation}/>
+                    <label htmlFor="location">Event location: </label>
+                    <input type="text" id="eventLocation" onChange={handleControlledInputChange}   className="form-control" placeholder="Event location" defaultValue={event.eventLocation}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label For="eventDate">Event Date: </label>
-                    <input type="date" id="eventDate" className="eventDate" onChange={handleControlledInputChange} value={event.eventDate}/>
+                    <label htmlFor="eventDate">Event Date: </label>
+                    <input type="date" id="eventDate" className="eventDate" onChange={handleControlledInputChange} defaultValue={event.eventDate}/>
                 </div>
             </fieldset>
-            <button id="saveEvent-button"className="btn btn-secondary"
-              onClick={handleClickSaveEvent}>
-              Save Event
+            <button id="saveEvent-button"className="btn btn-secondary" disabled={isLoading}
+              onClick={e => {
+                  e.preventDefault()
+                  handleClickSaveEvent()}
+                  }>
+              {eventId ? <>Save Event</> : <>Add New Event</>}
             </button>
         </form>
       )

@@ -28,6 +28,7 @@ export const ApplicationViews = () => {
         <Route path="tasks/edit/:taskId/*" element={<TaskForm />} />                       
         <Route path="/events" element={< EventList />}/>
         <Route path="/events/create/*" element={< EventForm />}/>
+        <Route path="/events/edit/:eventId/*" element={< EventForm />}/>
        </Routes>
        </MessageProvider>
     </EventProvider>
