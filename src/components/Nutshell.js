@@ -14,7 +14,7 @@ export const Nutshell = () => {
   if (localStorage.getItem("activeUser")) {
     return (
       <>
-        <NavgitBar />
+        <NavBar />
         <ApplicationViews />
         <Logout />
       </>

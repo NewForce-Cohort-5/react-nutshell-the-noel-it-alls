@@ -7,6 +7,8 @@ export const ApplicationViews = () => {
     return (
       <Routes>
 
+{/* <Route path="/" element={<><AnimalSearch /><AnimalList /></>} /> */}
+
         <Route path="/" element={<p>this is where home goes</p>}/>
         <Route path="/register" element={<p>this is where register go</p>}/>
         <Route path="/friends" element={<p>this is where friends go</p>}/>
