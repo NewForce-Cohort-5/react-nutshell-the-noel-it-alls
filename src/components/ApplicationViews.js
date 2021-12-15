@@ -14,13 +14,8 @@ export const ApplicationViews = () => {
     return (
       <TaskProvider>
 
-<<<<<<< HEAD
-{/* <Route path="/" element={<><AnimalSearch /><AnimalList /></>} /> */}
-
-=======
     <EventProvider >
       <Routes>
->>>>>>> main
         <Route path="/" element={<p>this is where home goes</p>}/>
         <Route path="/register" element={<p>this is where register go</p>}/>
         <Route path="/friends" element={<p>this is where friends go</p>}/>
