@@ -5,21 +5,13 @@ import "./Event.css"
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const EventForm = () => {
-    const { addEvent } = useContext(EventContext)
+    const { addEvent,getEventById,updateEvent } = useContext(EventContext)
     
-    const [event, setEvent] = useState({
-        userId: +localStorage.activeUser,
-        eventName: "",
-        eventLocation: "",
-        eventDate: ""
-      });
-  
+    const [event, setEvent] = useState({});
+      const [isLoading, setIsLoading] = useState(true);
       const navigate = useNavigate();
   
-      /*
-      Reach out to the world and get customers state
-      and locations state on initialization.
-      */
+      const {eventId} = useParams();
       useEffect(() => {
         
       }, [])
@@ -36,18 +28,41 @@ export const EventForm = () => {
         setEvent(newEvent)
       }
   
-      const handleClickSaveEvent = (props) => {
-        props.preventDefault() //Prevents the browser from submitting the form
-        
-            addEvent(event)
-            
-          .then(() => navigate("/events"))
-        }
-      
-  
-      return (
+      const handleClickSaveEvent = () =>{
+          if (event.eventName===null ||event.eventLocation===null ||event.eventDate==null ){window.alert("Please select an event name, location, or/and date")
+            }else{
+                    setIsLoading(true);
+                    if(eventId){
+                         updateEvent({
+                            eventName:event.eventName,
+                            eventLocation:event.eventLocation,
+                            eventDate:event.eventDate
+                            })
+                         .then(()=> navigate("/events/"))
+                    }else{
+                        addEvent({
+                            userId:+localStorage.activeUser,
+                            eventName:event.eventName,
+                            eventLocation:event.eventLocation,
+                            eventDate:event.eventDate
+                        })
+                        .then(()=> navigate("/events/"))
+                    }
+      }
+    }
+        useEffect (() => {
+            if(eventId){
+                getEventById(eventId)
+                .then(eventObj => { setEvent(eventObj)
+                    setIsLoading(false)
+                })
+            } else {
+                setIsLoading(false)
+            }
+        }, [])
+ return (
         <form className="eventForm">
-            <h2 className="eventForm__title">New Event</h2>
+             {eventId ? <h2 className="eventForm__title">Edit Event</h2>: <h2 className="eventForm__title">New Event</h2>} 
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event name:</label>
@@ -66,9 +81,12 @@ export const EventForm = () => {
                     <input type="date" id="eventDate" className="eventDate" onChange={handleControlledInputChange} value={event.eventDate}/>
                 </div>
             </fieldset>
-            <button id="saveEvent-button"className="btn btn-secondary"
-              onClick={handleClickSaveEvent}>
-              Save Event
+            <button id="saveEvent-button"className="btn btn-secondary" disabled={isLoading}
+              onClick={e => {
+                  e.preventDefault()
+                  handleClickSaveEvent()}
+                  }>
+              {eventId ? <>Save Event</> : <>Add New Event</>}
             </button>
         </form>
       )

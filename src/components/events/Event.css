@@ -73,5 +73,5 @@
    .eventCard:first-child{
        color:rgb(131, 165, 154);
        font-size: 2.5rem;
-       background-color: hsla(0,0%,100%,0.40);
+       background-color: rgba(67, 132, 141, 0.4);
    }
