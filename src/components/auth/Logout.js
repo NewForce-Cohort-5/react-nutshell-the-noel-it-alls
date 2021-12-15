@@ -3,19 +3,17 @@ import React, { useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Logout.css"
 
-export const Logout = () =>{
+export const Logout = (props) =>{
     const navigate = useNavigate()
 
     const handleLogout = (e) => {
-          
-          localStorage.removeItem("activeUser")
+        e.preventDefault()
 
-            window.location.reload(false);
-            navigate("/login")
-         
-    }
-      
-   
+        localStorage.removeItem("activeUser")
+                
+        navigate("/login") 
+        window.location.reload(false);
+        }
 
     return (
         <>
