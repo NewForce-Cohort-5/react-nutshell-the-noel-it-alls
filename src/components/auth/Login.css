@@ -1,5 +1,5 @@
 .h1, h1 {
-    font-size: 2.5rem;
+        font-size: 2.5rem;
    }
    
    fieldset {
@@ -12,11 +12,13 @@
    .form--login {
     display: inline-block;
     margin: 0 auto;
+    margin-left: 1em;
     text-align: left;
    }
    
    .form--login > fieldset > input[type="email"],
    .form--login > fieldset > input[type="password"] {
+   
     width: 25em;
    }
    
