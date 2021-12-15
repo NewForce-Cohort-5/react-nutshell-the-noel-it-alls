@@ -1,13 +1,15 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext } from "react";
 
-export const MessageContext = createContext()
+export const MessageContext = createContext();
 
- const [messages, setMessages] = useState([])
+export const messageProvider = (props) => {
+
+ const [messages, setMessages] = useState([]);
 
  const getMessages = () => {
     return fetch("http://localhost:8088/messages")
     .then(res => res.json())
-    .then(setMessages)
+    .then(setMessages);
 }
 
 const addMessage = messageObj => {
@@ -17,8 +19,7 @@ const addMessage = messageObj => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(messageObj)
-    })
-    .then(response => response.json())
+    }).then(response => response.json())
 }
 
 
@@ -28,4 +29,5 @@ return (
     }}>
         {props.children}
     </MessageContext.Provider>
-)
+);
+}
