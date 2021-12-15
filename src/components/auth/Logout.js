@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import "./Logout.css"
 
-export const Logout = () =>{
+export const Logout = (props) =>{
     const navigate = useNavigate()
     const email = useRef()
     const existDialog = useRef()
@@ -15,15 +15,13 @@ export const Logout = () =>{
     }
 
     const handleLogout = (e) => {
-          
-          localStorage.removeItem("activeUser")
+        e.preventDefault()
 
-            window.location.reload(false);
-            navigate("/login")
-         
-    }
-      
-   
+        localStorage.removeItem("activeUser")
+                
+        navigate("/login") 
+        window.location.reload(false);
+        }
 
     return (
         <>
