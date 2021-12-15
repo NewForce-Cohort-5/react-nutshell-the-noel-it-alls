@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import React from "react";
 import { EventList } from "./events/EventList";
 import { EventProvider } from "./events/EventProvider";
+import { EventForm } from "./events/EventForm";
 
 export const ApplicationViews = () => {
 
@@ -14,6 +15,7 @@ export const ApplicationViews = () => {
         <Route path="/messages" element={<p>this is where messages go</p>}/>
         <Route path="/tasks" element={<p>this is where tasks go</p>}/>
         <Route path="/events" element={< EventList />}/>
+        <Route path="/events/create/*" element={< EventForm />}/>
        </Routes>
     </EventProvider>
     )  
