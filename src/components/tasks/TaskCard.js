@@ -29,6 +29,9 @@ export const TaskCard = ({task}) => {
           })
       }
       function toggle(value){
+        const newTask = {... task};
+        newTask(value.target.id)
+
           console.log("you checked the box")
         return !value;
       } 
