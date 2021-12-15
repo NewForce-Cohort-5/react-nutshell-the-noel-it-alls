@@ -8,15 +8,12 @@ export const EventForm = () => {
     const { addEvent,getEventById,updateEvent } = useContext(EventContext)
     
     const [event, setEvent] = useState({});
-      const [isLoading, setIsLoading] = useState(true);
-      const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
   
-      const {eventId} = useParams();
-      useEffect(() => {
-        
-      }, [])
-
-      const handleControlledInputChange = (props) => {
+    const {eventId} = useParams();
+    
+    const handleControlledInputChange = (props) => {
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
         const newEvent = { ...event }
@@ -34,6 +31,8 @@ export const EventForm = () => {
                     setIsLoading(true);
                     if(eventId){
                          updateEvent({
+                            userId:+localStorage.activeUser,
+                            id:parseInt(event.id),
                             eventName:event.eventName,
                             eventLocation:event.eventLocation,
                             eventDate:event.eventDate
@@ -66,19 +65,19 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event name:</label>
-                    <input type="text" id="eventName" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Event name" value={event.eventName}/>
+                    <input type="text" id="eventName" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Event name" defaultValue={event.eventName}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label for="location">Event location: </label>
-                    <input type="text" id="eventLocation" onChange={handleControlledInputChange}   className="form-control" placeholder="Event location" value={event.eventLocation}/>
+                    <label htmlFor="location">Event location: </label>
+                    <input type="text" id="eventLocation" onChange={handleControlledInputChange}   className="form-control" placeholder="Event location" defaultValue={event.eventLocation}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label For="eventDate">Event Date: </label>
-                    <input type="date" id="eventDate" className="eventDate" onChange={handleControlledInputChange} value={event.eventDate}/>
+                    <label htmlFor="eventDate">Event Date: </label>
+                    <input type="date" id="eventDate" className="eventDate" onChange={handleControlledInputChange} defaultValue={event.eventDate}/>
                 </div>
             </fieldset>
             <button id="saveEvent-button"className="btn btn-secondary" disabled={isLoading}
