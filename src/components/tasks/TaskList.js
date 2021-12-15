@@ -13,6 +13,7 @@ export const TaskList = () => {
     getTasks()
   }, [])
 
+  // const sortedTask = tasks.sort((a,b) => b.taskDate - a.taskDate)
 
   return (
     <>
@@ -23,9 +24,11 @@ export const TaskList = () => {
         </button>
         <div className="tasks">
             {/* {console.log("TaskList: Render", tasks)} */}
+            
             {
+
                 tasks.filter(task => task.taskComplete === false).map(task => 
-                  <TaskCard key={task.id} task={task} />)
+                   <TaskCard key={task.id} task={task} />)
             }
         </div>
       </div>

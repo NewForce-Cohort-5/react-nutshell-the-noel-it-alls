@@ -45,7 +45,7 @@ export const TaskForm = () => {
             taskDate: task.taskDate,
             taskComplete: false
         })
-        .then(() => navigate(`/tasks/${task.id}`))
+        .then(() => navigate("/tasks"))
       }else {
         //POST - add
         addTask({
@@ -102,7 +102,7 @@ export const TaskForm = () => {
           defaultValue={task.taskDate}/>
         </div>
       </fieldset>
-      <button className="btn btn-primary"
+      <button className="btn btn-primary btn-dark"
         disabled={isLoading}
         onClick={event => {
           event.preventDefault() // Prevent browser from submitting the form and refreshing the page
