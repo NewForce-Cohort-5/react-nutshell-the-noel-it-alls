@@ -1,5 +1,8 @@
+#logout-button {
+    margin-left: 1em;
+}
 .h1, h1 {
-        font-size: 2.5rem;
+    font-size: 2.5rem;
    }
    
    fieldset {
@@ -9,20 +12,18 @@
     border: 0;
    }
    
-   .form--login {
+   .form--logout {
     display: inline-block;
     margin: 0 auto;
-    margin-left: 1em;
     text-align: left;
    }
    
-   .form--login > fieldset > input[type="email"],
-   .form--login > fieldset > input[type="password"] {
-   
+   .form--logout > fieldset > input[type="email"],
+   .form--logout > fieldset > input[type="password"] {
     width: 25em;
    }
    
-   .label--login {
+   .label--logout {
     width: 8rem;
     display: inline-block;
    }
@@ -44,11 +45,11 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
    }
    
-   .container--login {
+   .container--logout {
     text-align: center;
    }
    
-   .form--login {
+   .form--logout {
     background-position-x: right;
     
     z-index: 1;
@@ -69,4 +70,8 @@
     min-height: 5rem;
    }
    
-   
+   .eventCard:first-child{
+       color:rgb(131, 165, 154);
+       font-size: 2.5rem;
+       background-color: hsla(0,0%,100%,0.40);
+   }
