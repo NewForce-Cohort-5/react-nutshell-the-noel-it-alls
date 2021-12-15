@@ -13,6 +13,7 @@ export const TaskList = () => {
     getTasks()
   }, [])
 
+  // const taskByUser = taskByUser.filter(e => e.userId === +localStorage.activeUser)
   // const sortedTask = tasks.sort((a,b) => b.taskDate - a.taskDate)
 
   return (

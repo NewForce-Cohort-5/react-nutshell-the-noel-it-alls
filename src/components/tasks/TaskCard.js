@@ -22,7 +22,7 @@ export const TaskCard = ({task}) => {
         // task.taskComplete = taskComplete
 
       }    
-
+      if (task.userId === +localStorage.activeUser) {
    return (
 
 <section className="task">
@@ -38,4 +38,9 @@ export const TaskCard = ({task}) => {
    )
 
    }
+  else {
+    return (
+      <small>No tasks listed</small>
+    )
+  }}
 
