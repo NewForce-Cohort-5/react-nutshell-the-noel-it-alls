@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 export const MessageContext = createContext();
 
-export const messageProvider = (props) => {
+export const MessageProvider = (props) => {
 
  const [messages, setMessages] = useState([]);
 

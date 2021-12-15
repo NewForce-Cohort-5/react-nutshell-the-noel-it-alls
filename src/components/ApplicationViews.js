@@ -9,6 +9,7 @@ import { EventList } from "./events/EventList";
 import { EventProvider } from "./events/EventProvider";
 import { EventForm } from "./events/EventForm";
 import { MessageList } from "./Message/MessageList";
+import { MessageProvider } from "./Message/MessageProvider";
 
 export const ApplicationViews = () => {
 
@@ -16,6 +17,7 @@ export const ApplicationViews = () => {
       <TaskProvider>
 
     <EventProvider >
+      <MessageProvider>
       <Routes>
         <Route path="/" element={<p>this is where home goes</p>}/>
         <Route path="/register" element={<p>this is where register go</p>}/>
@@ -27,7 +29,9 @@ export const ApplicationViews = () => {
         <Route path="/events" element={< EventList />}/>
         <Route path="/events/create/*" element={< EventForm />}/>
        </Routes>
+       </MessageProvider>
     </EventProvider>
     </TaskProvider>
+    
     )  
 }

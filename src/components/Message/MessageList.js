@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { MessageContext } from "./MessageProvider";
 import { MessageCard } from "./MessageCard";
 
@@ -15,7 +15,7 @@ return (
 <div className="messages">
     {
         messages.map(mssg => {
-            return <MessageCard key={mssg.userId} message={mssg.message} />
+            return <MessageCard key={mssg.userId} messages={mssg} />
         })
     }
 </div>
