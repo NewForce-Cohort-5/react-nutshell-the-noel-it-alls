@@ -8,6 +8,8 @@ import { TaskProvider } from "./tasks/TaskProvider";
 import { EventList } from "./events/EventList";
 import { EventProvider } from "./events/EventProvider";
 import { EventForm } from "./events/EventForm";
+import { CompletedTaskList } from "./tasks/TaskCompleted";
+
 
 export const ApplicationViews = () => {
 
@@ -21,6 +23,7 @@ export const ApplicationViews = () => {
         <Route path="/friends" element={<p>this is where friends go</p>}/>
         <Route path="/messages" element={<p>this is where messages go</p>}/>
         <Route path="/tasks" element={<TaskList />}/>
+        <Route path="/tasks/completed" element={<CompletedTaskList />}/>
         <Route path="/tasks/create" element={<TaskForm />} /> 
         <Route path="tasks/edit/:taskId/*" element={<TaskForm />} />                       
         <Route path="/events" element={< EventList />}/>
