@@ -25,7 +25,8 @@ export const EventList = () => {
   return (
     <>
     <div className="events">
-        <button onClick={() => {navigate("/events/create")}}>
+        <h2>Events</h2>
+        <button id="save-button" className="btn-secondary"onClick={() => {navigate("/events/create")}}>
             Add Event
         </button>
       {console.log("EventList: Render", events)}
