@@ -30,8 +30,9 @@ export const TaskForm = () => {
   }
 
   const handleSaveTask = () => {
-    if (parseInt(task.id) === 0) {
-        window.alert("placeholder")
+    if (parseInt(task.id) === 0 || task.taskName === "" || task.taskDetail === "" || task.taskDate === "") {
+        window.alert("error")
+        debugger
     } else {
       //disable the button - no extra clicks
       setIsLoading(true);
