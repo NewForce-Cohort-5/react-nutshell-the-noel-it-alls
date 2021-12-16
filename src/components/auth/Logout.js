@@ -8,12 +8,6 @@ export const Logout = (props) =>{
     const email = useRef()
     const existDialog = useRef()
 
-    const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
-            .then(res => res.json())
-            .then(user => user.length ? user[0] : false)
-    }
-
     const handleLogout = (e) => {
         e.preventDefault()
 
