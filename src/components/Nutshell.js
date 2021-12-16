@@ -15,8 +15,8 @@ export const Nutshell = () => {
     return (
       <>
         <NavBar />
-        <ApplicationViews />
         <Logout />
+        <ApplicationViews />
       </>
     );
   } else {

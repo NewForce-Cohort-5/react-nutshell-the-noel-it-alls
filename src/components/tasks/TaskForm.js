@@ -111,7 +111,7 @@ export const TaskForm = () => {
           defaultValue={task.taskDate}/>
         </div>
       </fieldset>
-      <button className="btn btn-primary btn-dark"
+      <button className="btn btn-secondary"
         disabled={isLoading}
         onClick={event => {
           event.preventDefault() // Prevent browser from submitting the form and refreshing the page
