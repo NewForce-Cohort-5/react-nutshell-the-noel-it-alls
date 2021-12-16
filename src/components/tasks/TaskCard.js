@@ -11,8 +11,7 @@ export const TaskCard = ({task}) => {
     const { getTasks, completeTask, updateTask } = useContext(TaskContext)
 
   const navigate = useNavigate();
-
-
+  
 
     const handleCheckbox = (event) => {
         event.preventDefault();
@@ -29,7 +28,7 @@ export const TaskCard = ({task}) => {
     <h3 className="taskName">{task.taskName}</h3>
     <div className="taskDetail">{task.taskDetail}</div>
     <div className="taskDate">{task.taskDate}</div>
-    <button onClick={() => {
+    <button className="btn btn-secondary" onClick={() => {
     navigate(`/tasks/edit/${task.id}`)
 }}>Edit</button>
     <div><label htmlFor="completed">Completed?</label></div>
@@ -38,9 +37,10 @@ export const TaskCard = ({task}) => {
    )
 
    }
-  else {
+  else { 
+
     return (
-      <small>No tasks listed</small>
+     "" 
     )
   }}
 

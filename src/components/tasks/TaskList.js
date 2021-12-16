@@ -4,8 +4,18 @@ import { TaskContext } from "./TaskProvider"
 import { TaskCard } from "./TaskCard"
 import "./Tasks.css"
 
+let filterTasks = {
+  Incomplete: task => !task.taskCompleted,
+  Completed: task => task.taskCompleted
+};
+const filterTaskNames = Object.keys(filterTasks);
+
+
+
 export const TaskList = () => {
   const { tasks, getTasks } = useContext(TaskContext)
+  const [filter, setFilter] = useState('Incomplete');
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,7 +30,7 @@ export const TaskList = () => {
     <>
       <div className="tasksContainer">
         <h2>Tasks</h2>
-        <button onClick={() => navigate("/tasks/create")}>
+        <button className="btn btn-secondary" onClick={() => navigate("/tasks/create")}>
             Add Task
         </button>
         <div className="tasks">

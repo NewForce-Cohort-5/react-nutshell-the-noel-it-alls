@@ -17,7 +17,7 @@ export const Logout = (props) =>{
 
     return (
         <>
-        <button id="logout-button" className="btn btn-secondary" onClick={handleLogout}>Log Out</button>
+        <button id="logout-button" className="btn btn-secondary btn-danger" onClick={handleLogout}>Log Out</button>
         </>
     )
 }

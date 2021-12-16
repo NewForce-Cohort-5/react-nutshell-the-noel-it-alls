@@ -9,7 +9,15 @@ export const TaskForm = () => {
   const { addTask, getTaskById, updateTask } = useContext(TaskContext)
 
   //for edit, hold on to state of task in this view
-  const [task, setTask] = useState({})
+  const [task, setTask] = useState({
+
+            id:0,
+            userId: 0,
+            taskName: "",
+            taskDetail: "",
+            taskDate: "",
+            taskComplete: false
+  })
   //wait for data before button is active
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,9 +38,10 @@ export const TaskForm = () => {
   }
 
   const handleSaveTask = () => {
-    if (parseInt(task.id) === 0) {
-        window.alert("placeholder")
-    } else {
+    if (task.taskName==="" || task.taskDetail==="" || task.taskDate==="")
+    {
+      window.alert("Please add a task, detail, and date")
+  } else {
       //disable the button - no extra clicks
       setIsLoading(true);
       if (taskId){
@@ -102,7 +111,7 @@ export const TaskForm = () => {
           defaultValue={task.taskDate}/>
         </div>
       </fieldset>
-      <button className="btn btn-primary btn-dark"
+      <button className="btn btn-secondary"
         disabled={isLoading}
         onClick={event => {
           event.preventDefault() // Prevent browser from submitting the form and refreshing the page
