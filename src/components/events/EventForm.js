@@ -7,7 +7,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 export const EventForm = () => {
     const { addEvent,getEventById,updateEvent } = useContext(EventContext)
     
-    const [event, setEvent] = useState({});
+    const [event, setEvent] = useState({
+                userId:+localStorage.activeUser,
+                id:"",
+                eventName:"",
+                eventLocation:"",
+                eventDate:""
+    });
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
   
@@ -26,7 +32,7 @@ export const EventForm = () => {
       }
   
       const handleClickSaveEvent = () =>{
-          if (event.eventName===null ||event.eventLocation===null ||event.eventDate==null ){window.alert("Please select an event name, location, or/and date")
+          if (event.eventName==="" ||event.eventLocation==="" ||event.eventDate==="" ){window.alert("Please select an event name, location, or/and date")
             }else{
                     setIsLoading(true);
                     if(eventId){
