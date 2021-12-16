@@ -30,7 +30,7 @@ export const TaskList = () => {
     <>
       <div className="tasksContainer">
         <h2>Tasks</h2>
-        <button className="btn btn-secondary" onClick={() => navigate("/tasks/create")}>
+        <button className="btn btn-secondary add-task-button" onClick={() => navigate("/tasks/create")}>
             Add Task
         </button>
         <div className="tasks">
