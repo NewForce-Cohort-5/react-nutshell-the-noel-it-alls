@@ -1,4 +1,4 @@
-
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
 .tasks {
     display: flex;
@@ -10,5 +10,27 @@
       flex-basis: 28%;
       margin: 1em;
       padding: 1em;
-      border: 1px solid goldenrod;
+      border: 1px solid seagreen;
   }
+
+ 
+input {
+	background-color: rgb(108, 141, 172);
+	color: black;
+	font-family: "Comfortaa", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 2px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Patua One", sans-serif;
+  letter-spacing: 2px;
+  margin: 25px 0;
+}
+
+.font {
+	font-family: monospace;
+	font-size: 1.5em;
+	font-weight: bolder;
+}
