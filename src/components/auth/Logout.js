@@ -5,6 +5,8 @@ import "./Logout.css"
 
 export const Logout = (props) =>{
     const navigate = useNavigate()
+    const email = useRef()
+    const existDialog = useRef()
 
     const handleLogout = (e) => {
         e.preventDefault()

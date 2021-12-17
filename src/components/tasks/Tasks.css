@@ -23,10 +23,18 @@ input {
 	margin: 2px;
 }
 
+ .taskComplete {
+    margin-bottom: 15px
+}
+
 h1,h2,h3,h4,h5,h6 {
   font-family: "Patua One", sans-serif;
   letter-spacing: 2px;
   margin: 25px 0;
+}
+
+h2{
+    margin-left: 1em;
 }
 
 .font {
@@ -34,3 +42,9 @@ h1,h2,h3,h4,h5,h6 {
 	font-size: 1.5em;
 	font-weight: bolder;
 }
+
+.add-task-button{
+    margin-top:1em;
+    margin-left: 1em;
+}
+

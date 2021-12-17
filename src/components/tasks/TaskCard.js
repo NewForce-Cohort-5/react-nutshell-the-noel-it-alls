@@ -26,14 +26,17 @@ export const TaskCard = ({task}) => {
 
 <section className="task">
     <h3 className="taskName">{task.taskName}</h3>
-    <div className="taskDetail">{task.taskDetail}</div>
-    <div className="taskDate">{task.taskDate}</div>
-    <button className="btn btn-secondary" onClick={() => {
+    <p className="taskDetail">Detail: {task.taskDetail}</p>
+    <p className="taskDate">Complete by: {task.taskDate}</p>
+    <p><label htmlFor="completed">Completed?</label></p>
+    <input className="taskComplete" type ="checkbox"  onChange={handleCheckbox}/>
+    
+    <br/><button className="btn btn-secondary edit-button" onClick={() => {
     navigate(`/tasks/edit/${task.id}`)
 }}>Edit</button>
-    <div><label htmlFor="completed">Completed?</label></div>
-    <input className="taskComplete" type ="checkbox"  onChange={handleCheckbox}/>
     </section>
+
+  
    )
 
    }

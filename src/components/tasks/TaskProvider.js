@@ -21,7 +21,7 @@ export const TaskProvider = (props) => {
       },
       body: JSON.stringify(taskObj)
     })
-    .then(res => res.json());
+    .then(getTasks);
   }
   const getTaskById = (id) => {
     return fetch(`http://localhost:8088/tasks/${id}`)
@@ -49,9 +49,6 @@ const updateTask = task => {
     }).then(getTasks)
     //.then(response => response.json())
 } 
-
-  
-
  
   return (
     <TaskContext.Provider value={{
