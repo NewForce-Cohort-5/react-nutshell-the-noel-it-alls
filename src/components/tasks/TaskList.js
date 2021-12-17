@@ -3,12 +3,13 @@ import { useNavigate } from "react-router"
 import { TaskContext } from "./TaskProvider"
 import { TaskCard } from "./TaskCard"
 import "./Tasks.css"
+import { CompletedTaskCard } from "./TaskCompletedCard"
 
-let filterTasks = {
-  Incomplete: task => !task.taskCompleted,
-  Completed: task => task.taskCompleted
-};
-const filterTaskNames = Object.keys(filterTasks);
+// let filterTasks = {
+//   Incomplete: task => !task.taskCompleted,
+//   Completed: task => task.taskCompleted
+// };
+// const filterTaskNames = Object.keys(filterTasks);
 
 
 
@@ -40,6 +41,19 @@ export const TaskList = () => {
 
                 tasks.filter(task => task.taskComplete === false).map(task => 
                    <TaskCard key={task.id} task={task} />)
+            }
+        </div>
+      </div>
+
+      <div className="completedTasksContainer">
+        <h2>Completed Tasks</h2>
+        <div className="completedTasks">
+            {/* {console.log("TaskList: Render", tasks)} */}
+            
+            {
+
+                tasks.filter(task => task.taskComplete === true).map(task => 
+                   <CompletedTaskCard key={task.id} task={task} />)
             }
         </div>
       </div>

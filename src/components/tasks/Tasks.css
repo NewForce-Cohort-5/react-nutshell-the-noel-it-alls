@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
-.tasks {
+.tasks, .completedTasks {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
