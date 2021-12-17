@@ -3,7 +3,7 @@
     background-color: rgba(67, 132, 141, 0.4);
 }
 
-.eventCard {
+.eventCard, .eventbyMonth {
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
