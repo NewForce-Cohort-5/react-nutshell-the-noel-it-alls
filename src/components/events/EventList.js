@@ -10,7 +10,7 @@ export const EventList = () => {
   // This state changes when `getAnimals()` is invoked below
   const { events, getEvents } = useContext(EventContext)
   const navigate = useNavigate()
-  
+  const substring = Substring ()
     
   //useEffect - reach out to the world for something
   useEffect(() => {
