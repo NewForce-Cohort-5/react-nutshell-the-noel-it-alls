@@ -25,8 +25,9 @@ export const CompletedTaskCard = ({task}) => {
 
   //Use to format date into MM/DD/YYYY
   const formattedDate = new Date(task.taskDate);
-  const date = new Intl.DateTimeFormat('en-US', {timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' }).format(formattedDate)
-
+  const date = new Intl.DateTimeFormat('en-US', {timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' }).format(formattedDate);
+  
+  if (task.userId === +localStorage.activeUser) {
 return (
 
     <section className="task">
@@ -40,6 +41,12 @@ return (
         navigate(`/tasks/edit/${task.id}`)
     }}>Edit</button> */}
         </section>
+  
     
       
-       )}
+       )
+} else {
+    return (
+        ""
+    )
+}}
