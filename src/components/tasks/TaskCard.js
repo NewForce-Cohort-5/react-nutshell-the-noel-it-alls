@@ -8,7 +8,7 @@ import "./Tasks.css"
 
 export const TaskCard = ({task}) => {
 
-    const { getTasks, completeTask, updateTask } = useContext(TaskContext)
+    const { getTasks, completeTask } = useContext(TaskContext)
 
   const navigate = useNavigate();
   

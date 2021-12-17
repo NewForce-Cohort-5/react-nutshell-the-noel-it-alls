@@ -2,21 +2,19 @@ import React, { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { TaskContext } from "./TaskProvider"
 import { TaskCard } from "./TaskCard"
-
 import "./Tasks.css"
-import { CompletedTaskList } from "./TaskCompleted"
+import { CompletedTaskCard } from "./TaskCompletedCard"
 
-
-let filterTasks = {
-  Incomplete: task => !task.taskCompleted,
-  Completed: task => task.taskCompleted
-};
-const filterTaskNames = Object.keys(filterTasks);
+// let filterTasks = {
+//   Incomplete: task => !task.taskCompleted,
+//   Completed: task => task.taskCompleted
+// };
+// const filterTaskNames = Object.keys(filterTasks);
 
 
 
 export const TaskList = () => {
-  const { tasks, getTasks, completeTask } = useContext(TaskContext)
+  const { tasks, getTasks } = useContext(TaskContext)
   const [filter, setFilter] = useState('Incomplete');
 
   const navigate = useNavigate()
@@ -26,7 +24,7 @@ export const TaskList = () => {
     getTasks()
   }, [])
 
-// const taskByUser = taskByUser.filter(e => e.userId === +localStorage.activeUser)
+  // const taskByUser = taskByUser.filter(e => e.userId === +localStorage.activeUser)
   // const sortedTask = tasks.sort((a,b) => b.taskDate - a.taskDate)
 
   return (
@@ -41,27 +39,24 @@ export const TaskList = () => {
             
             {
 
-tasks.filter(task => task.taskComplete === false).sort((a,b) => {return new Date(a.taskDate) - new Date (b.taskDate)}).map(task => 
-  <TaskCard key={task.id} task={task} />)
+                tasks.filter(task => task.taskComplete === false).map(task => 
+                   <TaskCard key={task.id} task={task} />)
             }
         </div>
       </div>
 
-      
+      <div className="completedTasksContainer">
+        <h2>Completed Tasks</h2>
+        <div className="completedTasks">
+            {/* {console.log("TaskList: Render", tasks)} */}
+            
+            {
 
-<hr></hr>
-
-<h2>Completed Tasks:</h2>
-<div className="tasksCompletedList">
-  
-   
-        {
-          //returns the task Complete Card after filters/sorts by date
-          tasks.filter(task => task.complete === true).sort((a,b) => {return new Date(a.completionDate) - new Date (b.completionDate)}).map(task => 
-          <CompletedTaskList key={task.id} task={task} />)
-        }
-  
-</div>
+                tasks.filter(task => task.taskComplete === true).map(task => 
+                   <CompletedTaskCard key={task.id} task={task} />)
+            }
+        </div>
+      </div>
     </>
   )
 }
