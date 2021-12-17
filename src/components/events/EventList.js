@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { EventContext } from "./EventProvider"
 import { EventCard } from "./EventCard"
 import "./Event.css"
+import {Substring} from 'react-substring';
 
 export const EventList = () => {
   // This state changes when `getAnimals()` is invoked below
   const { events, getEvents } = useContext(EventContext)
-  const { sortedEventsByMonth, setsortedEventsByMonth} = useState ({})
-
   const navigate = useNavigate()
+  
+    
   //useEffect - reach out to the world for something
   useEffect(() => {
     console.log("EventList: useEffect - getEvents")
@@ -24,8 +25,6 @@ export const EventList = () => {
 
   const months = [{id:1, name:"January"},{id:2, name:"February"},{id:3, name:"March"}]
  
-
-
   return (
     <>
     <div className="events">
@@ -34,21 +33,20 @@ export const EventList = () => {
             Add Event
         </button>
         <div className="eventbyMonth" >   
-        <p>Event sorted by month</p>
-
-            <select onChange={(taco) =>taco.target.value = events.eventDate.string(5,6)}>
-
-            <option value="0">select</option>
+        <ul><p>Sorted by Months</p>
              {months.map(m =>(
-            <option key={m.id} value={m.id}> {m.name}</option>))}
-            </select>
-            
+            <li key={m.id} value={m.id}>{m.name}:{events.filter(event => event.eventDate.substring(5,6) === m.id)}</li>))}
+         </ul>
+         {console.log("events by dec", events.filter(event => event.eventDate.substring(5,6) === 12))}
       </div> 
       <div className="eventList">
         {console.log("EventList: Render", events)}
 
       {eventsByUser.length !== 0 ?eventsByUser.map(event => {
-          return <EventCard key={event.id} event={event} />
+          return <EventCard 
+                  key={event.id} 
+                  event={event} 
+                  />
         }):<p>No events listed yet</p>
       }
 
