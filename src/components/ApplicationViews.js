@@ -8,6 +8,8 @@ import { TaskProvider } from "./tasks/TaskProvider";
 import { EventList } from "./events/EventList";
 import { EventProvider } from "./events/EventProvider";
 import { EventForm } from "./events/EventForm";
+// import { CompletedTaskCard } from "./tasks/TaskCompletedCard";
+
 import { MessageList } from "./Message/MessageList";
 import { MessageForm } from "./Message/MessageForm";
 import { MessageProvider } from "./Message/MessageProvider";
