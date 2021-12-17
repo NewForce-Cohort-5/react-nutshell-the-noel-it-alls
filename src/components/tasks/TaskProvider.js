@@ -39,12 +39,12 @@ const updateTask = task => {
     .then(getTasks)
 }
 
-  const completeTask = taskId => {
+  const completeTask = (taskId, isComplete) => {
     return fetch(`http://localhost:8088/tasks/${taskId}`, {
         method: "PATCH",
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify({
-            taskComplete: true,
+            taskComplete: isComplete,
         }),
     }).then(getTasks)
     //.then(response => response.json())
