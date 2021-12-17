@@ -48,6 +48,7 @@ export const MessageList = ({props}) => {
 return (
     
 <div className="messages">
+<h2>Messages/Chat</h2>
     {
         messages.map(mssg => {
 
